@@ -208,14 +208,8 @@
             </SummaryTab>
           </keep-alive>
         </div>
-      </v-content>
-    </div>
 
-  </v-app>
-  <!-- <v-card
-      class="hide-overflow"
-      height="200px"
-    > -->
+      </v-content>
       <v-bottom-nav
         :active.sync="activeBtn"
         :value="showNav"
@@ -243,6 +237,14 @@
           <v-icon style="transform: rotate(90deg)" color="primary">merge_type</v-icon>
         </v-btn>
       </v-bottom-nav>
+    </div>
+
+  </v-app>
+  <!-- <v-card
+      class="hide-overflow"
+      height="200px"
+    > -->
+
     <!-- </v-card> -->
 </div>
 </template>
@@ -735,17 +737,44 @@ aside {
   max-height: calc(100% - 64px) !important;
 }
 
+
+table.table tbody td{
+  height: 28px !important;
+  line-height: 1.2 !important;
+  vertical-align: middle;
+  padding-top: 0px !important;
+}
+
+table.table tbody th{
+  height: 28px !important;
+  line-height: 1.2 !important;
+  vertical-align: middle;
+  padding-top: 0px !important;
+}
+
+table.v-table tbody td{
+  height: 28px !important;
+}
+
+table.v-table tbody th {
+  height: 28px !important;
+}
+
+.v-chip {
+  font-size: 11px;
+}
+
+.v-chip__content {
+  height: 27px;
+  border-radius: 20px
+}
+
 @media screen and (max-width: 1270px){
   aside {
     margin-top: 64px !important;
     max-height: calc(100% - 0px) !important;
   }
 }
-
-.v-list--dense .v-list__tile .v-icon {
-  font-size: 24px;
-}
-
 </style>
 
 <style lang="sass">

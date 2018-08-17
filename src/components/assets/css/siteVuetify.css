@@ -89,3 +89,12 @@ table.table tbody td .input-group.input-group--selection-controls {
   cursor: default;
   color: black !important;
 }
+
+.v-chip {
+  font-size: 11px;
+}
+
+.v-chip .v-chip__content {
+  height: 27px;
+  border-radius: 20px
+}

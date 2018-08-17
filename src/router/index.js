@@ -17,6 +17,8 @@ Vue.use(Typeahead)
 Vue.use(Clipboard)
 
 export const bus = new Vue()
+// require('../components/assets/css/siteVuetify.css');
+
 
 export default new Router({
   routes: [

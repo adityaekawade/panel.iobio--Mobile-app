@@ -73,7 +73,7 @@
                     </div>
                     <div v-if="multipleSearchTerms.length">
                       <br>
-                        Phenotypes Searched:
+                        <!-- Phenotypes Searched: -->
                       <v-chip disabled outline color="blue-grey darken-3" close v-for="(searchItem, i) in multipleSearchTerms" :key="i" @input="remove(searchItem)">
                         {{ i+1 }}. {{ searchItem }}
                       </v-chip>
@@ -135,6 +135,46 @@
               <!-- Start data table  -->
               <v-flex xs12>
                 <v-card v-if="multipleSearchTerms.length">
+                  <!-- <v-card-title>
+                    <v-text-field
+                      append-icon="search"
+                      label="Search"
+                      single-line
+                      hide-details
+                    ></v-text-field>
+                  </v-card-title> -->
+                  <v-card-title>
+                    <!-- <label>Genes</label> -->
+                    <div style="display:inline-block; margin-top:-10px;">
+                      <label>Genes</label>
+                      <input
+                        :disabled="multipleSearchTerms.length<1"
+                        id="top-genes-input"
+                        class="form-control"
+                        type="text"
+                        v-model="genesTop"
+                        autocomplete="off"
+                        list="genes"
+                        placeholder="50">
+                        <datalist id="genes">
+                          <option v-for="genesCount in genesTopCounts">
+                            {{ genesCount }}
+                          </option>
+                        </datalist>
+                    </div>
+
+                    <v-spacer></v-spacer>
+                    <v-chip
+                      color="primary"
+                      label
+                      outline
+                      style="margin-top:30px"
+                    >{{selected.length}} of {{items.length}} genes selected</v-chip>
+                    <v-icon style="margin-top:30px; margin-left:5px">search</v-icon>
+                    <div >
+
+                    </div>
+                  </v-card-title>
                   <v-data-table
                       id="genes-table"
                       v-model="selected"
@@ -402,6 +442,7 @@ import SvgBar from '../viz/SvgBar.vue';
             value: 'indexVal',
             sortable: false,
             align: 'left',
+            width: '10%'
           },
           {
             text: 'Gene',
@@ -519,6 +560,7 @@ import SvgBar from '../viz/SvgBar.vue';
               value: 'indexVal',
               sortable: false,
               align: 'left',
+              width: '10%'
             },
             {
               text: 'Gene',
@@ -554,6 +596,7 @@ import SvgBar from '../viz/SvgBar.vue';
               value: 'indexVal',
               sortable: false,
               align: 'left',
+              width: '10%'
             },
             {
               text: 'Gene',
@@ -928,7 +971,7 @@ import SvgBar from '../viz/SvgBar.vue';
 
 #top-genes-input{
   width: 200px;
-  height:40px;
+  height:32px;
   margin-top: 4px;
   background-color: #F4F4F4;
   border-color: #F4F4F4;
@@ -939,7 +982,7 @@ import SvgBar from '../viz/SvgBar.vue';
 @media screen and (max-width:1600px){
   #top-genes-input{
     width: 120px;
-    height:40px;
+    height:32px;
     margin-top: 4px;
   }
 }
