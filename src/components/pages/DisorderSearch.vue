@@ -22,7 +22,7 @@
           type="text"
           autocomplete="off"
           v-on:focus="ClearInputForNewSearch"
-          placeholder="Treacher Collins Syndrome">
+          placeholder="Treacher Collins">
         <typeahead
           match-start
           v-model="search"
@@ -34,10 +34,13 @@
       </div>
 
       <v-btn
-          style="margin-top:-0.35px; text-transform: none"
+          style="margin-top:-0.35px; text-transform: none; min-width:10px; width:70px"
           class="btnColor"
           v-on:click.prevent="performSearch">
-        Generate Gene List
+        GO
+      </v-btn>
+      <v-btn flat icon v-on:click="openFullModal">
+        <v-icon>filter_list</v-icon>
       </v-btn>
       <!-- <v-tooltip bottom>
         <v-btn
@@ -54,7 +57,6 @@
 
       <div v-if="multipleSearchTerms.length">
         <br>
-          Conditions Searched:
         <v-chip disabled outline color="blue-grey darken-3" close v-for="(searchItem, i) in multipleSearchTerms" :key="i" @input="remove(searchItem)">
           {{ i+1 }}. {{ searchItem }}
         </v-chip>
@@ -173,6 +175,9 @@ var model = new Model();
       }
     },
     methods:{
+      openFullModal(){
+        bus.$emit("openFullScreenDialog")
+      },
       remove(item){
         bus.$emit("removeSearchTerm");
         this.removeItem(item);
@@ -372,7 +377,7 @@ var model = new Model();
 
 @media screen and (max-width: 700px){
   #input{
-    width: 300px;
+    width: 170px;
     height:40px;
     margin-top: 4px;
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)

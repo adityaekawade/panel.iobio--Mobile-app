@@ -79,7 +79,7 @@
             <td>
               <div id="app">
                 <div>
-                  <span style="font-size:14px; font-weight:600; margin-top:2px" slot="activator">
+                  <span style="font-size:14px;  margin-top:2px" slot="activator">
                     {{ props.item.name }}
                   </span>
                   <span v-if="props.item.isAssociatedGene===true">
@@ -91,11 +91,6 @@
             <td v-if="multipleSearchDisorders.length>1">
               <span v-for="x in props.item.searchTermIndexSVG">
                 <span v-html="x"></span>
-              </span>
-            </td>
-            <td>
-              <span
-                v-html="props.item.htmlData">
               </span>
             </td>
             <td>
@@ -220,7 +215,6 @@ var model = new Model();
             sortable: false,
             value: 'name'
           },
-          { text: 'Gene Panels', align: 'left', sortable: false, value: 'htmlData' },
           {
             text: '',
             align: 'left',
@@ -318,7 +312,6 @@ var model = new Model();
               value: 'name'
             },
             { text: 'Search Terms', align: 'left', value: 'searchTermIndexSVG' },
-            { text: 'Gene Panels', align: 'left', sortable: false, value: 'htmlData' },
             {
               text: '',
               align: 'left',
@@ -335,7 +328,6 @@ var model = new Model();
               sortable: false,
               value: 'name'
             },
-            { text: 'Gene Panels', align: 'left', sortable: false, value: 'htmlData' },
             {
               text: '',
               align: 'left',

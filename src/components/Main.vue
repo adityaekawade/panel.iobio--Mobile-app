@@ -104,13 +104,11 @@
         <span >panel.iobio</span>
       </v-toolbar-title>
 
-      <!-- <span style="margin-left:130px">
-      </span>
       <v-spacer></v-spacer>
       <v-menu bottom offset-y style="color:black">
         <v-btn flat slot="activator"
         ><v-icon style="padding-right:4px">input</v-icon>
-          <strong>Export</strong>
+          Export
         </v-btn>
         <v-list>
           <div v-if="component==='GeneticTestingRegistry'">
@@ -139,7 +137,7 @@
           </v-list-tile>
         </v-list>
       </v-menu>
-      <span>
+      <!-- <span>
         <v-dialog v-model="newAnalysisDialog" persistent max-width="350">
           <v-btn flat slot="activator"><v-icon>autorenew</v-icon><strong>Clear All</strong></v-btn>
           <v-card>
@@ -277,7 +275,7 @@ import Overview from './pages/Overview.vue'
     },
     data(){
       return{
-        component: 'Phenolyzer',
+        component: 'GeneticTestingRegistry',
         GtrScrollY:0,
         PhenolyzerScrollY:0,
         SummaryScrollY:0,

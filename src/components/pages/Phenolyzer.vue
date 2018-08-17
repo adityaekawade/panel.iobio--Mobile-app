@@ -48,7 +48,7 @@
                         style="margin-top:-0.35px; text-transform: none; color:white"
                         class="btnColor"
                         v-on:click="getPhenotypeData">
-                      Go
+                      <v-icon>play_arrow</v-icon>
                     </v-btn>
 
                     <!-- <v-tooltip bottom>
@@ -218,7 +218,7 @@
                         </td>
                         <td>{{ props.item.indexVal }}</td>
                         <td >
-                          <span style="font-size:14px; font-weight:600; margin-top:2px" slot="activator">{{ props.item.geneName }}</span>
+                          <span style="font-size:14px; font-weight:400; margin-top:2px" slot="activator">{{ props.item.geneName }}</span>
                           <td v-if="multipleSearchTerms.length>1">
                             <span v-for="x in props.item.searchTermIndexSVG">
                               <span v-html="x"></span>
@@ -949,7 +949,7 @@ import SvgBar from '../viz/SvgBar.vue';
 }
 .btn{
   padding: 0px;
-  height: 34px;
+  height: 38px;
 }
 .form-control{
   font-size: 15px;
@@ -973,8 +973,7 @@ import SvgBar from '../viz/SvgBar.vue';
   width: 200px;
   height:32px;
   margin-top: 4px;
-  background-color: #F4F4F4;
-  border-color: #F4F4F4;
+  border-color: #cdcdcd;
 }
 
 /* Media Queries */

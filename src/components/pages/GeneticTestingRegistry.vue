@@ -14,24 +14,26 @@
           {{ snackbarText }}
           <v-btn flat color="pink" @click.native="snackbar = false">Close</v-btn>
         </v-snackbar>
+
         <v-container fluid grid-list-md>
           <v-layout row wrap style="margin-top:-20px;">
+
             <v-flex d-flex xs12>
               <v-card>
                 <v-card-text style="margin-bottom:-5px">
-                  <h3>Genetic Testing Registry</h3>
                   <v-layout row wrap>
-                    <v-flex xs12 sm12 md12 lg8 xl8>
+                    <v-flex xs12 sm12 md12 lg12 xl12>
                       <DisorderSearch
                         v-bind:DisordersPropsBackArr="DisordersPropsBackArr"
                         v-on:showDiseases="addDiseases($event)"
                         v-on:multipleSearchData="multipleSearchData($event)"
                         @search-gtr="onSearchGTR">
                       </DisorderSearch>
+
                     </v-flex>
 
                     <v-flex  >
-                      <div style="display:inline-block; padding-top:5px;">
+                      <!-- <div style="display:inline-block; padding-top:5px;">
                         <label>Genes</label>
                         <input
                           :disabled="geneProps.length<1"
@@ -97,18 +99,6 @@
                                   </p>
                                   The panels are defined by the number of genes they cover, and can be edited by using the slider below.
                                 </p>
-                                <!-- <br>
-                                <strong>SPECIFIC PANELS </strong>
-                                <br>
-                                  <span style="margin-left:20px">Contain less than <input type="number" onkeydown="javascript: return event.keyCode !== 69"  v-model="lowerLimitInput" class="form-control" style="display:inline-block; width:70px">&nbsp; genes</span>
-                                <br><br>
-                                <strong>MODERATE PANELS </strong>
-                                <br>
-                                  <span style="margin-left:20px">Contain between <strong style="color:rgb(132, 132, 132)">{{ lowerLimitInput }}</strong> and <strong style="color:rgb(132, 132, 132)">{{ upperLimitInput }}</strong> genes</span>
-                                <br><br>
-                                <strong>GENERAL PANELS </strong>
-                                <br>
-                                  <span style="margin-left:20px">Contain less than <input type="number" onkeydown="javascript: return event.keyCode !== 69"  v-model="upperLimitInput" class="form-control" style="display:inline-block; width:70px">&nbsp; genes</span> -->
                               </v-card-text>
                               <div id="EditCard" style="width: 400px; margin-left:50px">
                                 <v-layout row>
@@ -198,7 +188,7 @@
                             </v-tooltip>
                           </v-flex>
                         </v-layout>
-                      </div>
+                      </div> -->
                     </v-flex>
                   </v-layout>
                 </v-card-text>
@@ -219,7 +209,7 @@
 
             <v-flex d-flex xs12  >
                   <v-layout row wrap>
-                    <v-flex  xs8 >
+                    <v-flex  xs12 >
                       <v-card>
                         <show-gene-panel1
                         v-if="geneProps.length && diseasesProps.length && modeOfInheritanceProps.length && multipleSearchItems.length"
@@ -239,7 +229,33 @@
                       </v-card>
                     </v-flex>
 
-                   <div v-bind:class="[(browser==='Chrome' && isMobile===false) || (browser==='Firefox' && isMobile===false) ? 'flex xs4 pr-2 pl-2': 'flex xs3 pr-2 pl-2']" >
+                    <v-layout row justify-center>
+                    <v-dialog v-model="fullScreenDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+                      <v-card>
+                        <v-toolbar dark color="primary">
+                          <v-btn icon dark @click.native="fullScreenDialog = false">
+                            <v-icon>close</v-icon>
+                          </v-btn>
+                          <v-toolbar-title>Settings</v-toolbar-title>
+                          <v-spacer></v-spacer>
+                        </v-toolbar>
+                        <v-list three-line subheader>
+                          <v-subheader>User Controls</v-subheader>
+                          <v-list-tile avatar>
+                            <v-list-tile-content>
+                              <v-list-tile-title>Content filtering</v-list-tile-title>
+                              <v-list-tile-sub-title>Set the content filtering level to restrict apps that can be downloaded</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                          </v-list-tile>
+                        </v-list>
+                        <v-divider></v-divider>
+                        <v-list three-line subheader>
+                        </v-list>
+                      </v-card>
+                    </v-dialog>
+                  </v-layout>
+
+                   <!-- <div v-bind:class="[(browser==='Chrome' && isMobile===false) || (browser==='Firefox' && isMobile===false) ? 'flex xs4 pr-2 pl-2': 'flex xs3 pr-2 pl-2']" >
 
                      <div class="d-flex mb-2 xs12 mb-3">
                        <v-card v-if="geneProps.length">
@@ -403,14 +419,12 @@
                                         <br>
                                         Gene Panels: {{ item._genePanelCount}}
                                         <br>
-                                        <!-- <span v-show="item._omim!==''">OMIM: {{ item._omim}}</span>
-                                        <br> -->
+
                                       </span>
                                     </v-tooltip>
                                   </v-flex>
                                   <v-flex >
                                     <div>
-                                      <!-- {{item._geneCount}} -->
                                       <DisordersGeneBar
                                       v-if="TotalGtrGenes>0 && chartComponent==='disorders'"
                                       class="SvgBarClass"
@@ -437,7 +451,6 @@
                               </v-layout>
                               <br>
                             </v-card-text>
-                            <!-- end disorders subcomponent -->
                               <v-divider></v-divider>
                             <v-card-text style="margin-left:5px" v-on:click="DisordersAndModesComponent='modes'">
                               <center>
@@ -644,7 +657,6 @@
                     </div>
                   </div>
 
-                    <!-- start vendor cars -->
                   <div id="inActiveVendorsCard">
                     <div id="activeVendorsCard" class="mb-3">
                     <v-layout wrap>
@@ -730,9 +742,8 @@
                   </v-layout wrap>
                 </div>
               </div>
-                    <!-- end vendor card -->
 
-               </div>
+               </div> -->
               </v-layout>
             </v-flex>
 
@@ -913,6 +924,7 @@ export default {
       panelsDefinitionValues: [20, 45],
       SetOrangeSlider: false,
       showPanelsDistribution: false,
+      fullScreenDialog: false
       // browser: null,
       // isMobile: false,
     }
@@ -998,6 +1010,9 @@ export default {
   },
   mounted(){
     this.HelpDialogsData = HelpDialogs.data;
+    bus.$on("openFullScreenDialog", ()=>{
+      this.fullScreenDialog = true;
+    })
     bus.$on("lastDisorder", ()=>{
       this.snackbarText = "It is required that atleast one disorder is kept selected";
       this.snackbar = true;
