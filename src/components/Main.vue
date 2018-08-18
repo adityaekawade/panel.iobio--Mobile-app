@@ -209,8 +209,6 @@
 
       </v-content>
       <v-bottom-nav
-        :active.sync="activeBtn"
-        :value="showNav"
         absolute
         app
         color="transparent"

@@ -20,7 +20,7 @@
     <v-alert style="width:85%" outline color="info" icon="check_circle" dismissible v-model="alert">
       {{ alertText }}
     </v-alert>
-    <v-alert
+    <!-- <v-alert
         v-if="associatedGenesData.length"
         v-model="alertAssociatedInfo"
         dismissible
@@ -29,8 +29,27 @@
         style="width:90%; border-style:none; border-color:white !important; border:0px !important"
       >
         Genes marked with the <v-icon style="font-size:20px">verified_user</v-icon> icon are reported to be associated with the condition; it is possible that they do not appear on any panels that test for the condition. These genes will always appear at the top of the gene list.
-      </v-alert>
+      </v-alert> -->
+      <v-card-title >
+        <v-layout row wrap>
+          <v-flex xs9>
+             <v-subheader><strong>{{slider}} of {{items.length}} Genes selected</strong></v-subheader>
+            <v-slider
+              v-model="slider"
+              :max="items.length"
+              min=0
+              thumb-color="blue darken-4"
+            ></v-slider>
+          </v-flex>
+          <v-flex xs1>
+          </v-flex>
+          <v-flex xs2>
+            <v-icon medium style="margin-top:50px">search</v-icon>
+          </v-flex>
+        </v-layout>
 
+
+      </v-card-title>
       <v-data-table
           id="genes-table"
           v-model="selected"
@@ -242,7 +261,7 @@ var model = new Model();
         arrangedSearchData: [],
         associatedGenesData: [],
         alertAssociatedInfo: true,
-
+        slider: null
       }
     },
     mounted(){
@@ -288,6 +307,9 @@ var model = new Model();
 
     },
     watch: {
+      slider: function(){
+        this.filterGenesOnSelectedNumber(this.slider);
+      },
       GeneData: function(){
         this.AddGeneData();
       },
@@ -417,7 +439,7 @@ var model = new Model();
         return "<span style='color:#4e7ad3'><i>Not on any panels </i><span>"
       },
       AddGeneData: function(){
-        bus.$emit("openNavDrawer");
+        // bus.$emit("openNavDrawer");
         this.GetGeneData = this.GeneData;
         this.associatedGenesData = this.associatedGenes;
         if(this.associatedGenesData.length){
@@ -477,6 +499,7 @@ var model = new Model();
 
         this.noOfSourcesSvg();
         this.selected = this.items.slice(0,50);
+        this.slider = this.selected.length
         // console.log("this.selected", this.selected)
         this.selectedGenesText = ""+ this.selected.length + " of " + this.items.length + " genes selected";
         this.$emit("UpdateSelectedGenesText", this.selectedGenesText);
