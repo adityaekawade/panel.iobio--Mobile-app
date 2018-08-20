@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="background-color:#f9fbff">
+    <div style="background-color:white">
     <v-snackbar
         :timeout="snackbarTimeout"
         :top="y === 'top'"

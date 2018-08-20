@@ -3,92 +3,63 @@
       <v-layout row wrap style="margin-top:-10px;">
         <v-flex d-flex xs12>
           <v-card>
-            <v-jumbotron style="height: 310px;" :gradient="gradient" dark>
-              <v-container fill-height>
-                <v-layout row wrap>
-                  <v-flex xs12>
-                    <v-flex text-xs-center style="margin-top:50px">
-                      <h1 style="color:white" class="display-2 font-weight-thin mb-3">panel.iobio</h1>
-                      <h4  class="subheading" style="font-size:15px">Generate list of genes based on suspected disorders and phenotypes.</h4>
-                      <br>
-                      <v-btn color="white" style="color:#0D47A1">
-                      Learn More
-                      </v-btn>
-                      <a href="#gtr">
-                        <v-btn outline color="white" style="color:#0D47A1">
-                          Genetic Testing Registry
-                        </v-btn>
-                      </a>
-
-                      <a href="#phenolyzer">
-                        <v-btn outline color="white" style="color:#0D47A1">
-                          Phenolyzer
-                        </v-btn>
-                      </a>
-
-                    </v-flex>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-jumbotron>
+            <v-card-text>
+              <v-list>
+                <v-card-title primary-title style="font-size:18px">
+                  <strong>Help: </strong>
+                </v-card-title>
+                <v-list-tile>
+                  <v-list-tile-title>What is panel.iobio</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile >
+                  <v-list-tile-title>How to use Genetic Testing Registry (GTR)?</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-title>How to use Phenolyzer?</v-list-tile-title>
+                </v-list-tile>
+                <v-divider style="height:2px"></v-divider>
+                <v-list-tile>
+                  <v-list-tile-title>Disclaimer</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile >
+                  <v-list-tile-title>About</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-title>Software and resources</v-list-tile-title>
+                </v-list-tile>
+                <v-divider style="height:2px"></v-divider>
+                <v-card-title primary-title style="font-size:18px">
+                  <strong>Additional resources: </strong>
+                </v-card-title>
+                <v-list-tile >
+                  <v-list-tile-title><a href="http://iobio.io/tags/gene.iobio/" target="_iobio">Blog</a></v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile >
+                  <v-list-tile-title><a href="http://gene.iobio.io/help_resources.html" target="_iobio">Tutorials</a></v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile >
+                  <v-list-tile-title><a href="http://iobio.io" target=")iobio">iobio</a></v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile >
+                  <v-list-tile-title><a href="http://iobio.io/support.html" target=")iobio">Support the iobio project</a></v-list-tile-title>
+                </v-list-tile>
+                <v-divider style="height:2px"></v-divider>
+                <v-card-title primary-title style="font-size:18px">
+                  <strong>Apps: </strong>
+                </v-card-title>
+                <v-list-tile >
+                  <v-list-tile-title><a href="http://gene.iobio.io/">gene.iobio</a> </v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile >
+                  <v-list-tile-title><a href="http://bam.iobio.io/">bam.iobio</a> </v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile >
+                  <v-list-tile-title><a href="http://vcf.iobio.io/">vcf.iobio</a> </v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-card-text>
           </v-card>
         </v-flex>
-      </v-layout>
-      <v-layout row wrap style="margin-left:15px; margin-right:15px;" id="gtr">
-        <v-flex xs12 md12 sm12 lg6 xl6 >
-          <v-flex  style="margin-top:40px">
-            <v-container >
-              <h2  text-xs-center class="font-weight-thin mb-3"><img src="../assets/images/ncbi.png" alt="NCBI logo" style="height:65px; width:55px;"> Genetic Testing Registry</h2>
-              <p style="text-align: justify; font-size:14px">
-                The Genetic Testing Registry (GTR®) is an NCBI resource that compiles genetic test information that has been voluntarily submitted by multiple providers. <br>
-                Panel.iobio allows you to search for one or more disorders, and generates a list of all of genes appearing on panels associated with these disorders. The list is sorted with genes appearing on the most panels at the top. The list can then be filtered based on your own specific requirements.
-              </p>
-              <br>
-              <v-btn color="white" style="color:#0D47A1">
-              Learn More
-              </v-btn>
-              <v-btn color="primary" @click="getStarted('gtr')">
-                Get Started
-              </v-btn>
-
-            </v-container>
-          </v-flex>
-        </v-flex>
-
-        <v-flex xs12 md12 sm12 lg5 xl5>
-          <v-flex text-xs-center>
-              <img style="margin-top:68px; right: 0; width:590px;" src="../assets/images/bg9.svg" alt="bg">
-          </v-flex>
-        </v-flex>
-
-      </v-layout>
-      <v-divider></v-divider>
-      <v-layout row wrap style="margin-left:5px; margin-right:15px;" id="phenolyzer">
-        <v-flex xs12 md12 sm12 lg7 xl7 order-md2 order-sm2 order-xs2 order-lg1 order-xl1>
-          <v-flex text-xs-center>
-              <img style="margin-top:68px; right: 0; width:600px;" src="../assets/images/phenolyzer1bg.svg" alt="bg">
-          </v-flex>
-        </v-flex>
-        <v-flex xs12 md12 sm12 lg4 xl4 order-md-1 order-sm1 order-xs1 order-lg2 order-xl2>
-          <v-flex  style="margin-top:40px; margin-left:15px">
-            <v-container >
-              <h2  text-xs-center class="font-weight-thin mb-3"><img src="../assets/images/phenolyzer_icon_active.svg" alt="NCBI logo" style="height:65px; width:55px;"> Phenolyzer</h2>
-              <p   style="text-align: justify; font-size:14px">
-                Phenolyzer stands for Phenotype Based Gene Analyzer, a tool focusing on discovering genes based on user-specific disease/phenotype terms.
-                Enter phenotype terms in the search box below to use the Phenolyzer tool to generate list of genes              </p>
-              <br>
-              <v-btn color="white" style="color:#0D47A1">
-              Learn More
-              </v-btn>
-              <v-btn color="primary" @click="getStarted('phenolyzer')">
-                Get Started
-              </v-btn>
-            </v-container>
-          </v-flex>
-        </v-flex>
-
-
-
       </v-layout>
     <!-- </v-container> -->
   </div>

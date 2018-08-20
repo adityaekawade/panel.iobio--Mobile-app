@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="app">
-      <v-app id="inspire" style="background-color:#f9fbff">
+      <v-app id="inspire" style="background-color:white">
         <v-container fluid grid-list-md>
           <v-layout row wrap style="margin-top:-20px;">
 
@@ -65,7 +65,7 @@
             <v-flex  d-flex xs12 >
               <v-layout row wrap>
                 <!-- show data table -->
-                <v-flex xs8>
+                <v-flex xs12>
                   <v-card>
                     <SummaryDataTable
                       v-if="GtrGenesArr.length>1 || PhenolyzerGenesArr.length>1"
@@ -79,7 +79,7 @@
                 <!-- end data table -->
 
                 <!-- start side bar -->
-                <div v-bind:class="[(browser==='Chrome' && isMobile===false) || (browser==='Firefox' && isMobile===false) ? 'flex xs4 pr-2 pl-2': 'flex xs3 pr-2 pl-2']" >
+                <!-- <div v-bind:class="[(browser==='Chrome' && isMobile===false) || (browser==='Firefox' && isMobile===false) ? 'flex xs4 pr-2 pl-2': 'flex xs3 pr-2 pl-2']" >
 
                   <div class="d-flex mb-2 xs12">
                     <v-card v-if="GtrGenesArr.length>1 || PhenolyzerGenesArr.length>1">
@@ -146,7 +146,7 @@
                     </v-card>
                   </div>
                   <br>
-                </div>
+                </div> -->
 
                 <!-- end side bar -->
               </v-layout>

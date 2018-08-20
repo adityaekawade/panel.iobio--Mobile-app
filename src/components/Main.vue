@@ -223,10 +223,6 @@
         absolute
         color="transparent"
       >
-        <v-btn flat color="primary" @click="selectComponent('OverviewPage')">
-          <span>Overview</span>
-          <v-icon>library_books</v-icon>
-        </v-btn>
 
         <v-btn flat color="primary" @click="selectComponent('GeneticTestingRegistry')">
           <span>GTR</span>
@@ -242,6 +238,12 @@
           <span>Summary</span>
           <v-icon style="transform: rotate(90deg)" color="primary">merge_type</v-icon>
         </v-btn>
+
+        <v-btn flat color="primary" @click="selectComponent('OverviewPage')">
+          <span>Help</span>
+          <v-icon>reorder</v-icon>
+        </v-btn>
+
       </v-bottom-nav>
     </div>
 
