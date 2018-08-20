@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="background-color:#f9fbff">
+    <div style="background-color:white">
         <v-snackbar
           :timeout="snackbarTimeout"
           :top="y === 'top'"
@@ -240,17 +240,211 @@
                           <v-spacer></v-spacer>
                         </v-toolbar>
                         <v-list three-line subheader>
-                          <v-subheader>User Controls</v-subheader>
-                          <v-list-tile avatar>
-                            <v-list-tile-content>
-                              <v-list-tile-title>Content filtering</v-list-tile-title>
-                              <v-list-tile-sub-title>Set the content filtering level to restrict apps that can be downloaded</v-list-tile-sub-title>
-                            </v-list-tile-content>
-                          </v-list-tile>
+                          <div>
+
+                            <v-card-title primary-title>
+                              <v-list-tile-title>
+                                Panels Selection
+                              </v-list-tile-title>
+                              <br><br>
+                              <v-layout v-on:click="clickedTopPanelFilters" style="margin-top:-12px">
+                                <v-flex xs4>
+                                  <v-tooltip bottom>
+                                    <v-checkbox slot="activator" v-model="selectedPanelFilters" color="green" label="Specific" value="specific"></v-checkbox>
+                                    <span>
+                                      <center><i>Less than {{ lowerLimitProps}} genes</i></center>
+                                    </span>
+                                  </v-tooltip>
+                                </v-flex>
+                                <v-flex xs4>
+                                  <v-tooltip bottom>
+                                    <v-checkbox slot="activator" v-model="selectedPanelFilters" color="amber accent-4" label="Moderate" value="moderate"></v-checkbox>
+                                      <span>
+                                        <center><i>More than {{ lowerLimitProps}} genes & Less than {{ upperLimitProps }} genes</i></center>
+                                      </span>
+                                  </v-tooltip>
+                                </v-flex>
+                                <v-flex x4>
+                                  <v-tooltip bottom>
+                                    <v-checkbox slot="activator" v-model="selectedPanelFilters" color="red" label="General" value="general"></v-checkbox>
+                                    <span>
+                                      <center><i>More than {{ upperLimitProps}} genes</i></center>
+                                    </span>
+                                  </v-tooltip>
+                                </v-flex>
+                              </v-layout>
+                            </v-card-title>
+                          </div>
                         </v-list>
                         <v-divider></v-divider>
-                        <v-list three-line subheader>
-                        </v-list>
+                        <v-list>
+                          <div  id="inActiveDisordersAndModesFilterCard">
+          <div id="activeDisordersAndModesFilterCard" class="mb-3">
+            <v-layout wrap>
+            <v-flex xs12>
+            <div v-if="diseases.length && modeOfInheritanceProps.length > 0 ">
+              <v-card v-bind:class="[chartComponent==='disorders' ? 'activeCardBox elevation-5' : 'rightbarCard ']">
+                <v-card-text>
+                  <center>
+                    <span class="Rightbar_CardHeading" style="font-size:12px">
+                      ASSOCIATED CONDITIONS & MODES OF INHERITANCE
+                    </span>
+                    <Dialogs
+                      id="disordersDialog"
+                      class="dialogBox"
+                      :HeadlineText="HelpDialogsData[2].HeadlineText"
+                      :ContentText="HelpDialogsData[2].Content">
+                    </Dialogs>
+                    <v-divider class="Rightbar_card_divider"></v-divider>
+
+                   <div v-bind:class="[chartComponent==='disorders' ? 'disabledClass' : 'activeClass']">
+                     <span class="Rightbar_card_content_subheading">
+                       <strong class="Rightbar_card_content_heading">{{ selectDisorders.length }}</strong> of {{ multiSelectDisorder.length }} conditions selected
+                     </span>
+                     <br>
+                     <span class="Rightbar_card_content_subheading">
+                       <strong class="Rightbar_card_content_heading">{{ selectedModesOfInheritance.length }}</strong> of {{ modeOfInheritanceProps.length }} modes of inheritance selected
+                     </span>
+                     <br>
+                     <v-btn outline color="primary darken-1" dark class="viewFilterButton" v-on:click="showChartComponent('disorders')">
+                       View & Filter
+                     </v-btn>
+                    </div>
+                  </center>
+                </v-card-text>
+              <div v-bind:class="[chartComponent==='disorders' ? 'activeClass' : 'disabledClass']">
+                  <v-card flat >
+                    <v-card-text style="margin-left:5px" v-on:click="DisordersAndModesComponent='disorders'">
+                      <center>
+                        <span class="Rightbar_card_content_subheading">
+                          <strong class="Rightbar_card_content_heading">{{ selectDisorders.length }}</strong> of {{ multiSelectDisorder.length }} conditions selected
+                        </span>
+                      </center>
+                      <v-layout>
+                        <v-flex xs10>
+                          <center><strong>ASSOCIATED CONDITIONS</strong></center>
+                        </v-flex>
+                        <v-flex xs2>
+                          <center><strong>GENES</strong></center>
+                        </v-flex>
+                      </v-layout>
+                      <br>
+                      <div class="vendorsCardClass">
+                        <v-layout row wrap v-for="(item, i) in multiSelectDisorder" :key="i">
+                          <v-flex xs10>
+                            <v-tooltip left nudge-right="180">
+                              <v-checkbox slot="activator" style="margin-top:-8px" :label="item.Title" :value="item" v-model="selectDisorders">
+                              </v-checkbox>
+                              <span >
+                                <center><strong>{{ item.Title}}</strong></center>
+                                <br>
+                                Mode of inheritance: {{ item._modeOfInheritance}}
+                                <br>
+                                Gene Panels: {{ item._genePanelCount}}
+                                <br>
+                                <!-- <span v-show="item._omim!==''">OMIM: {{ item._omim}}</span>
+                                <br> -->
+                              </span>
+                            </v-tooltip>
+                          </v-flex>
+                          <v-flex >
+                            <div>
+                              {{item._geneCount}}
+                              <!-- <DisordersGeneBar
+                              v-if="TotalGtrGenes>0 && chartComponent==='disorders'"
+                              class="SvgBarClass"
+                              id="disordersGeneBar"
+                              :selectedNumber="item._geneCount"
+                              :totalNumber="maxGenes">
+                             </DisordersGeneBar> -->
+                            </div>
+                          </v-flex>
+                        </v-layout>
+                      </div>
+                      <br>
+                      <v-layout>
+                        <v-flex xs6>
+                          <center>
+                            <v-btn outline color="primary darken-1" dark class="viewFilterButton" v-on:click="SelectAllDisordersButton">SELECT ALL</v-btn>
+                          </center>
+                        </v-flex>
+                        <v-flex xs6>
+                          <center>
+                            <v-btn outline color="primary darken-1" dark class="viewFilterButton" v-on:click="DeSelectAllDisordersButton">DESELECT ALL</v-btn>
+                          </center>
+                        </v-flex>
+                      </v-layout>
+                      <br>
+                    </v-card-text>
+                    <!-- end disorders subcomponent -->
+                      <v-divider></v-divider>
+                    <v-card-text style="margin-left:5px" v-on:click="DisordersAndModesComponent='modes'">
+                      <center>
+                        <span class="Rightbar_card_content_subheading">
+                          <strong class="Rightbar_card_content_heading">{{ selectedModesOfInheritance.length }}</strong> of {{ modeOfInheritanceProps.length }} modes of inheritance selected
+                        </span>
+                        <br>
+                      </center>
+                      <span style="font-size13px; font-weight:600">
+                        Each condition is associated with one or more modes of inheritance. If a mode of inheritance is selected below,
+                        all conditions associated with it will be retained. If a condition is associated with multiple modes of inheritance,
+                        all must be deselected to remove the condition.
+                      </span>
+                      <br><br>
+                      <v-layout>
+                        <v-flex xs10>
+                          <center><strong>MODE OF INHERITANCE</strong></center>
+                        </v-flex>
+                        <v-flex xs2>
+                          <center><strong>CONDITIONS</strong></center>
+                        </v-flex>
+                      </v-layout>
+                      <br>
+                      <v-layout row wrap v-for="(item, i) in modeOfInheritanceProps" :key="i">
+                        <v-flex xs10>
+                          <v-checkbox style="margin-top:-5px" :label="item._modeOfInheritance" :value="item._modeOfInheritance" v-model="selectedModesOfInheritance">
+                          </v-checkbox>
+                        </v-flex>
+                        <v-flex>
+                          <div>
+                            {{ item._numberOfDisorder }}
+                            <!-- <ModesSvgBar
+                             v-if="multiSelectDisorder.length>0 && chartComponent==='disorders'"
+                             class="SvgBarClass"
+                             id="ModesGeneBar"
+                             :selectedNumber="item._numberOfDisorder"
+                             :totalNumber="multiSelectDisorder.length">
+                            </ModesSvgBar> -->
+                          </div>
+                        </v-flex>
+                      </v-layout>
+                      <br>
+                      <v-layout>
+                        <v-flex xs6>
+                          <center>
+                            <v-btn outline color="primary darken-1" dark class="viewFilterButton" v-on:click="SelectAllModesButton">SELECT ALL</v-btn>
+                          </center>
+                        </v-flex>
+                        <v-flex xs6>
+                          <center>
+                            <v-btn outline color="primary darken-1" dark class="viewFilterButton" v-on:click="DeSelectAllModesButton">DESELECT ALL</v-btn>
+                          </center>
+                        </v-flex>
+                      </v-layout>
+                    </v-card-text>
+                  </v-card>
+                <center>
+                  <v-btn color="primary darken-1" flat="flat" v-on:click="closeComponent">Close</v-btn>
+                </center>
+                <br>
+              </div>
+            </v-card>
+          </div>
+        </v-flex>
+      </v-layout>
+      </div>
+      </div>
+    </v-list>
                       </v-card>
                     </v-dialog>
                   </v-layout>

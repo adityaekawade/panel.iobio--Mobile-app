@@ -14,6 +14,11 @@
         {{ snackbarText }}
         <v-btn flat color="white" @click.native="snackbar = false">Close</v-btn>
       </v-snackbar>
+
+
+
+
+
 <!--
     <v-navigation-drawer
       permanent
@@ -105,7 +110,7 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-menu bottom offset-y style="color:black">
+      <v-bottom-sheet bottom offset-y style="color:black">
         <v-btn flat slot="activator"
         ><v-icon style="padding-right:4px">input</v-icon>
           Export
@@ -136,7 +141,7 @@
             <v-list-tile-title><v-icon>input</v-icon>&nbsp; &nbsp;Export all genes to file</v-list-tile-title>
           </v-list-tile>
         </v-list>
-      </v-menu>
+      </v-bottom-sheet>
       <!-- <span>
         <v-dialog v-model="newAnalysisDialog" persistent max-width="350">
           <v-btn flat slot="activator"><v-icon>autorenew</v-icon><strong>Clear All</strong></v-btn>
@@ -158,6 +163,7 @@
 
     <div>
       <v-content>
+
         <div class="header-nav-bar" >
           <v-card-text>
             <p></p>
@@ -206,11 +212,15 @@
             </SummaryTab>
           </keep-alive>
         </div>
+        <!-- <v-card
+            class="hide-overflow"
+            height="200px"
+          > -->
 
+         <!-- </v-card> -->
       </v-content>
       <v-bottom-nav
         absolute
-        app
         color="transparent"
       >
         <v-btn flat color="primary" @click="selectComponent('OverviewPage')">
@@ -494,6 +504,11 @@ import Overview from './pages/Overview.vue'
         var genesToCopy = geneNamesToString.replace(/,/gi , ' ');
         this.$clipboard(genesToCopy);
 
+        if(this.selectedGtrGenes.length>0){
+          this.snackbarText = " Number of Genes Copied : " + this.selectedGtrGenes.length + " ";
+        }
+        this.snackbar=true;
+
         this.sendClin({
           'type': 'apply-genes',
           source: 'gtr',
@@ -502,10 +517,7 @@ import Overview from './pages/Overview.vue'
           searchTerms: [this.searchTermGTR]
         });
 
-        if(this.selectedGtrGenes.length>0){
-          this.snackbarText = " Number of Genes Copied : " + this.selectedGtrGenes.length + " ";
-        }
-        this.snackbar=true;
+
       },
       copyPhenolyzerGenes: function(){
         var geneNames = this.selectedPhenolyzerGenes.map(gene => {
@@ -524,6 +536,11 @@ import Overview from './pages/Overview.vue'
         var genesToCopy = geneNamesToString.replace(/,/gi , ' ');
         this.$clipboard(genesToCopy);
 
+        if(this.selectedPhenolyzerGenes.length>0){
+          this.snackbarText = " Number of Genes Copied : " + this.selectedPhenolyzerGenes.length + " ";
+        }
+        this.snackbar=true;
+
         this.sendClin({
           'type': 'apply-genes',
           source: 'phenotype-driven',
@@ -532,10 +549,7 @@ import Overview from './pages/Overview.vue'
           searchTerms: [this.searchTermPhenotype]
         });
 
-        if(this.selectedPhenolyzerGenes.length>0){
-          this.snackbarText = " Number of Genes Copied : " + this.selectedPhenolyzerGenes.length + " ";
-        }
-        this.snackbar=true;
+
       },
       copyAllGenes: function(){
         let self = this;
@@ -552,6 +566,11 @@ import Overview from './pages/Overview.vue'
         console.log("clinData", clinData)
         this.$clipboard(genesToCopy);
 
+        if(this.uniqueGenes.length>0){
+          this.snackbarText = " Number of Genes Copied : " + this.uniqueGenes.length + " ";
+        }
+        this.snackbar=true;
+
         this.sendClin({
           type: 'apply-genes',
           source: 'all',
@@ -560,10 +579,7 @@ import Overview from './pages/Overview.vue'
           searchTerms:  [this.searchTermGTR, this.searchTermPhenotype]
         });
 
-        if(this.uniqueGenes.length>0){
-          this.snackbarText = " Number of Genes Copied : " + this.uniqueGenes.length + " ";
-        }
-        this.snackbar=true;
+
       },
       exportGtrGenes: function(){
         var geneNames = this.selectedGtrGenes.map(gene => {
@@ -763,6 +779,33 @@ table.v-table tbody th {
 .v-chip__content {
   height: 27px;
   border-radius: 20px
+}
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
 }
 
 @media screen and (max-width: 1270px){

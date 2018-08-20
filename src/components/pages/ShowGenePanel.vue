@@ -98,7 +98,7 @@
             <td>
               <div id="app">
                 <div>
-                  <span style="font-size:14px;  margin-top:2px" slot="activator">
+                  <span style="font-size:12.5px;  margin-top:2px" slot="activator">
                     {{ props.item.name }}
                   </span>
                   <span v-if="props.item.isAssociatedGene===true">
