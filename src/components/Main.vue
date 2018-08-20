@@ -670,6 +670,9 @@ import Overview from './pages/Overview.vue'
   width: 285px;
   overflow-wrap: break-word;
 }
+.v-label {
+  font-size: 14px !important;
+}
 
 .margin_ActiveTab{
   margin-left: -8px
@@ -743,6 +746,10 @@ a:hover {
   background-color: #2c3e50;
 }
 
+.v-slider__thumb{
+  width: 27px;
+  height: 27px;
+}
 
 aside {
   margin-top: 64px !important;

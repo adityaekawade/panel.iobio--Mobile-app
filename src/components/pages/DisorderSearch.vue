@@ -42,24 +42,14 @@
       <v-btn flat icon v-on:click="openFullModal">
         <v-icon>filter_list</v-icon>
       </v-btn>
-      <!-- <v-tooltip bottom>
-        <v-btn
-          slot="activator"
-          v-if="multipleSearchTerms.length"
-          :disabled="checked===true"
-          flat icon color="primary"
-          v-on:click="ClearInputForNewSearch"
-        >
-          <v-icon>add_circle</v-icon>
-        </v-btn>
-        <span>Enter New Condition</span>
-      </v-tooltip> -->
 
       <div v-if="multipleSearchTerms.length">
         <br>
-        <v-chip disabled outline color="blue-grey darken-3" close v-for="(searchItem, i) in multipleSearchTerms" :key="i" @input="remove(searchItem)">
-          {{ i+1 }}. {{ searchItem }}
-        </v-chip>
+        <div class="scrollXDiv">
+          <v-chip disabled outline color="blue-grey darken-3" close v-for="(searchItem, i) in multipleSearchTerms" :key="i" @input="remove(searchItem)">
+            {{ i+1 }}. {{ searchItem }}
+          </v-chip>
+        </div>
       </div>
     <p v-if="checked" ><v-progress-linear height="3" color="primary" :indeterminate="true"></v-progress-linear></p>
     <p>
@@ -393,6 +383,13 @@ var model = new Model();
   height:60px;
   padding-left: 30px;
   padding-top: 15px;
+}
+
+.scrollXDiv{
+  height:40px;
+  overflow-x:scroll;
+  white-space: nowrap;
+
 }
 </style>
 

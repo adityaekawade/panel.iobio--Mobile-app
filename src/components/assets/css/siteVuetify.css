@@ -78,6 +78,10 @@ table.table tbody td .input-group.input-group--selection-controls {
   font-weight: 300 !important;
 }
 
+.v-label {
+  font-size: 14px !important;
+}
+
 /* Table column headers */
 .v-datatable thead th.column.sortable{
   cursor: default;

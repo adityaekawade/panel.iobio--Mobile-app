@@ -31,8 +31,21 @@
         Genes marked with the <v-icon style="font-size:20px">verified_user</v-icon> icon are reported to be associated with the condition; it is possible that they do not appear on any panels that test for the condition. These genes will always appear at the top of the gene list.
       </v-alert> -->
       <v-card-title >
-        <v-layout row wrap>
-          <v-flex xs9>
+        <v-layout row wrap v-if="openSearchBox">
+          <v-flex xs10>
+            <v-text-field
+              label="Search Genes"
+              single-line
+              hide-details
+              v-model="search"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs1>
+            <v-icon style="margin-top:22px" v-on:click="openSearchBox=false">close</v-icon>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap v-if="openSearchBox===false">
+          <v-flex xs8>
              <v-subheader><strong>{{slider}} of {{items.length}} Genes selected</strong></v-subheader>
             <v-slider
               v-model="slider"
@@ -44,7 +57,7 @@
           <v-flex xs1>
           </v-flex>
           <v-flex xs2>
-            <v-icon medium style="margin-top:50px">search</v-icon>
+            <v-icon  v-on:click="openSearchBox=true" medium style="margin-top:50px">search</v-icon>
           </v-flex>
         </v-layout>
 
@@ -261,7 +274,8 @@ var model = new Model();
         arrangedSearchData: [],
         associatedGenesData: [],
         alertAssociatedInfo: true,
-        slider: null
+        slider: null,
+        openSearchBox: false,
       }
     },
     mounted(){
