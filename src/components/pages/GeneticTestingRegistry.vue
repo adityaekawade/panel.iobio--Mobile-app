@@ -233,9 +233,9 @@
                     <v-dialog v-model="fullScreenDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                       <v-card>
                         <v-toolbar dark color="primary">
-                          <v-btn icon dark @click.native="fullScreenDialog = false">
-                            <v-icon>close</v-icon>
-                          </v-btn>
+                          <!-- <v-btn icon dark @click.native="fullScreenDialog = false"> -->
+                            <v-icon @click="fullScreenDialog = false">close</v-icon>
+                          <!-- </v-btn> -->
                           <v-toolbar-title>Filters</v-toolbar-title>
                           <v-spacer></v-spacer>
                         </v-toolbar>

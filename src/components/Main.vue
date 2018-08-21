@@ -164,11 +164,11 @@
     <div>
       <v-content>
 
-        <div class="header-nav-bar" >
+        <!-- <div class="header-nav-bar" >
           <v-card-text>
             <p></p>
           </v-card-text>
-        </div>
+        </div> -->
         <div style="background:white; height:auto">
           <keep-alive>
             <Overview v-if="component==='OverviewPage'"></Overview>

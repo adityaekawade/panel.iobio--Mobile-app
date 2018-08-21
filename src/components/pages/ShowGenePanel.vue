@@ -46,7 +46,7 @@
         </v-layout>
         <v-layout row wrap v-if="openSearchBox===false">
           <v-flex xs8>
-             <v-subheader><strong>{{slider}} of {{items.length}} Genes selected</strong></v-subheader>
+             <strong style="font-size:17px">{{slider}}</strong> of {{items.length}} Genes selected
             <v-slider
               v-model="slider"
               :max="items.length"
@@ -57,7 +57,7 @@
           <v-flex xs1>
           </v-flex>
           <v-flex xs2>
-            <v-icon  v-on:click="openSearchBox=true" medium style="margin-top:50px">search</v-icon>
+            <v-icon  v-on:click="openSearchBox=true" medium style="margin-top:20px">search</v-icon>
           </v-flex>
         </v-layout>
 

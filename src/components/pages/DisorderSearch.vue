@@ -39,7 +39,7 @@
           v-on:click.prevent="performSearch">
         GO
       </v-btn>
-      <v-btn flat icon v-on:click="openFullModal">
+      <v-btn flat icon v-on:click="openFullModal" v-if="this.multipleSearchTerms.length">
         <v-icon>filter_list</v-icon>
       </v-btn>
 
